@@ -1,4 +1,5 @@
 #!/bin/bash
+
 set -e
 
 MYSQL_HOST=${MYSQL_HOST:-localhost}
@@ -19,9 +20,9 @@ export PHABRICATOR_LOG_PHD_HOME=${PHABRICATOR_LOG_PHD_HOME:-/var/tmp/phd/log}
 
 while ! nc -vz ${MYSQL_HOST} ${MYSQL_PORT};
 do
-	echo Connect MySQL...
-	echo sleeping;
-	sleep 1;
+        echo Connect MySQL...
+        echo sleeping;
+        sleep 1;
 done;
 echo MySQL Connected!;
 
@@ -37,8 +38,17 @@ echo "Start configuration..."
 ./bin/config set phd.log-directory "$PHABRICATOR_LOG_PHD_HOME"
 ./bin/config set phabricator.base-uri $PHABRICATOR_BASE_URI
 
+[ -v PABRICATOR_CLUSTER_MAILERS_JSON ] && ./bin/config set cluster.mailers $PABRICATOR_CLUSTER_MAILERS_JSON
+[ -v PABRICATOR_METAMTA_DEFAULT_ADDRESS ] && ./bin/config set metamta.default-address $PABRICATOR_METAMTA_DEFAULT_ADDRESS
+
+if [ -v PHABRICATOR_STORAGE_LOCAL_PATH ]; then
+	./bin/config set storage.local-disk.path "$PHABRICATOR_STORAGE_LOCAL_PATH"
+	mkdir -p "$PHABRICATOR_STORAGE_LOCAL_PATH"
+	chown -R www-data:www-data "$PHABRICATOR_STORAGE_LOCAL_PATH"
+fi
+
 mkdir -p "$PHABRICATOR_REPO_LOCAL_PATH"
-chown www-data:www-data "$PHABRICATOR_REPO_LOCAL_PATH"
+chown -R www-data:www-data "$PHABRICATOR_REPO_LOCAL_PATH"
 mkdir -p "$PHABRICATOR_LOG_HOME"
 chown www-data:www-data "$PHABRICATOR_LOG_HOME"
 
