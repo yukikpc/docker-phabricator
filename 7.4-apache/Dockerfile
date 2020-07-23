@@ -1,7 +1,7 @@
 FROM php:7.4-apache
 MAINTAINER Yûki K<yukikpc@gmail.com>
 
-ARG phabricator_commit_hash="b9d52f38ddadafc5b5d768f3cc1003bba80efd05"
+ARG phabricator_commit_hash="2710a1e7aa426b6a3bfc68f90a968e492bee0b59"
 
 RUN apt-get update && apt-get -y upgrade && \
 	apt-get -y install git python3-pygments zlib1g-dev libpng-dev libjpeg-dev libfreetype6-dev libzip-dev libldap2-dev netcat && \
