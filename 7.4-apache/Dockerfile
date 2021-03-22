@@ -15,7 +15,7 @@ RUN apt-get update && apt-get -y upgrade && \
 	echo "extension=apcu.so" > pecl-apcu.ini && \
 	echo "extension=xhprof.so" > pecl-xhprof.ini && \
 	cd - && \
-	curl -sL https://deb.nodesource.com/setup_13.x | bash - && \
+	curl -sL https://deb.nodesource.com/setup_12.x | bash - && \
 	apt-get install -y nodejs && \
 	cd /opt && \
 	git clone --single-branch --branch stable https://github.com/phacility/phabricator && \
