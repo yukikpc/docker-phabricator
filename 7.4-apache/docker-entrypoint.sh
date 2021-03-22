@@ -38,6 +38,8 @@ echo "Start configuration..."
 ./bin/config set phd.log-directory "$PHABRICATOR_LOG_PHD_HOME"
 ./bin/config set phabricator.base-uri $PHABRICATOR_BASE_URI
 
+./bin/config set load-libraries '["phabricator-match-extensions"]'
+
 [ -v PABRICATOR_CLUSTER_MAILERS_JSON ] && ./bin/config set cluster.mailers "$PABRICATOR_CLUSTER_MAILERS_JSON"
 [ -v PABRICATOR_METAMTA_DEFAULT_ADDRESS ] && ./bin/config set metamta.default-address $PABRICATOR_METAMTA_DEFAULT_ADDRESS
 

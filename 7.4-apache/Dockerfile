@@ -2,6 +2,7 @@ FROM php:7.4-apache
 MAINTAINER Yûki K<yukikpc@gmail.com>
 
 ARG phabricator_commit_hash="2710a1e7aa426b6a3bfc68f90a968e492bee0b59"
+ARG phabricator_match_extensions_tag="1.1.0"
 
 RUN apt-get update && apt-get -y upgrade && \
 	apt-get -y install git python3-pygments zlib1g-dev libpng-dev libjpeg-dev libfreetype6-dev libzip-dev libldap2-dev netcat && \
@@ -21,6 +22,7 @@ RUN apt-get update && apt-get -y upgrade && \
 	git clone --single-branch --branch stable https://github.com/phacility/arcanist && \
 	git clone --single-branch --branch stable https://github.com/phacility/libphutil && \
 	git clone --single-branch https://github.com/ProfFan/phabritex && \
+	git clone --branch $phabricator_match_extensions_tag --depth 1 https://github.com/Supermarches-Match/phabricator-match-extensions && \
 	cd - && \
 	cd /var/www && \
 	git clone https://github.com/ProfFan/render2katex && \
