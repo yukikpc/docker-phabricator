@@ -1,3 +1,6 @@
 # Docker Image for Phabricator
 
-* [phabritex](https://github.com/ProfFan/phabritex) is installed.
+## Enabled Plugins
+
+* [phabritex](https://github.com/ProfFan/phabritex)
+* [phabricator-match-extensions](https://github.com/Supermarches-Match/phabricator-match-extensions)
